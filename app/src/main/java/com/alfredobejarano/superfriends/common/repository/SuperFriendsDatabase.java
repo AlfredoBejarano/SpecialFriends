@@ -5,10 +5,11 @@ import android.arch.persistence.room.RoomDatabase;
 
 import com.alfredobejarano.superfriends.BuildConfig;
 import com.alfredobejarano.superfriends.common.model.Friend;
+import com.alfredobejarano.superfriends.welcome.model.UserToken;
 
 import static com.alfredobejarano.superfriends.common.repository.SuperFriendsDatabase.DATABASE_VERSION;
 
-@Database(entities = {Friend.class}, version = DATABASE_VERSION)
+@Database(entities = {Friend.class, UserToken.class}, version = DATABASE_VERSION)
 public abstract class SuperFriendsDatabase extends RoomDatabase {
     /**
      * Defines the current database version.

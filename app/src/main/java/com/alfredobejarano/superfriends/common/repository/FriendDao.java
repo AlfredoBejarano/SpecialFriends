@@ -32,4 +32,10 @@ public interface FriendDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addFriend(Friend friend);
+
+    /**
+     * Removes all the Friend records.
+     */
+    @Query("DELETE FROM Friend")
+    void removeFriends();
 }
