@@ -5,4 +5,5 @@
     <string name="search_friend">Buscar en tus amigos</string>
     <string name="facebook_app_id">1874933972566991</string>
     <string name="fb_login_protocol_scheme">fb1874933972566991</string>
+    <string name="facebook_login_cancelled">Facebook login has been cancelled</string>
 </resources>
