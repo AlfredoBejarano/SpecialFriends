@@ -13,8 +13,8 @@ import com.alfredobejarano.superfriends.SuperFriendsApplication;
 import com.alfredobejarano.superfriends.common.ViewModelState;
 import com.alfredobejarano.superfriends.common.repository.SuperFriendsDatabase;
 import com.alfredobejarano.superfriends.common.repository.UserTokenDao;
+import com.alfredobejarano.superfriends.home.view.HomeActivity;
 import com.alfredobejarano.superfriends.welcome.model.UserToken;
-import com.alfredobejarano.superfriends.welcome.view.WelcomeActivity;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class WelcomeViewModel extends AndroidViewModel {
     public WelcomeViewModel(@NonNull Application application) {
         super(application);
         state.setValue(ViewModelState.STATE_READY);
+        checkSessions();
     }
 
     /**
@@ -64,7 +65,7 @@ public class WelcomeViewModel extends AndroidViewModel {
                             new Handler(context.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    context.startActivity(new Intent(context, WelcomeViewModel.class));
+                                    context.startActivity(new Intent(context, HomeActivity.class));
                                     state.setValue(ViewModelState.STATE_READY);
                                 }
                             });
@@ -78,7 +79,7 @@ public class WelcomeViewModel extends AndroidViewModel {
     /**
      * Checks if the is just one facebook session to operate with.
      */
-    public void checkSessions() {
+    private void checkSessions() {
         // Check that the ViewModel is ready to perform an operation.
         if (state.getValue() == ViewModelState.STATE_READY) {
             // Indicate that the ViewModel is busy.
@@ -92,9 +93,9 @@ public class WelcomeViewModel extends AndroidViewModel {
                         if (dao != null) {
                             List<UserToken> tokens = dao.getUserTokens();
                             if (tokens != null && tokens.size() == 1) {
-                                context.startActivity(new Intent(context, WelcomeActivity.class));
-                                state.setValue(ViewModelState.STATE_READY);
+                                context.startActivity(new Intent(context, HomeActivity.class));
                             }
+                            state.postValue(ViewModelState.STATE_READY);
                         }
                     }
                 }
