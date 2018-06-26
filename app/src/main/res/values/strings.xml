@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SuperFriends</string>
     <string name="friend_picture">Friend picture</string>
+    <string name="friend_favorite">favorite friend</string>
+    <string name="search_friend">Buscar en tus amigos</string>
 </resources>
