@@ -5,7 +5,8 @@
     android:id="@+id/welcome_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".welcome.view.WelcomeActivity">
 
     <LinearLayout
         android:id="@+id/welcome_texts"
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorBattleShipGray"
             android:textSize="22sp"
-            tools:text="Welcome to" />
+            android:text="@string/welcome_to" />
 
         <TextView
             android:id="@+id/welcome_special"
@@ -35,7 +36,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="40sp"
             android:textStyle="bold"
-            tools:text="Special" />
+            android:text="@string/special" />
 
         <TextView
             android:id="@+id/welcome_friends"
@@ -44,7 +45,7 @@
             android:textAllCaps="true"
             android:textColor="@color/colorVeryDarkCyan"
             android:textSize="50sp"
-            tools:text="Friends" />
+            android:text="@string/friends" />
     </LinearLayout>
 
     <com.facebook.login.widget.LoginButton
@@ -58,9 +59,15 @@
     <Button
         android:id="@+id/welcome_login_button"
         style="@style/green_button"
+        android:onClick="performFacebookLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Enter with Facebook" />
+        android:text="@string/enter_with_facebook" />
+
+    <include
+        android:id="@+id/loading_view"
+        layout="@layout/view_loading"
+        android:visibility="gone" />
 </android.support.constraint.ConstraintLayout>

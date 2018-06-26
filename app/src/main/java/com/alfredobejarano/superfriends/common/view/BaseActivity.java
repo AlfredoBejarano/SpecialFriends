@@ -11,33 +11,24 @@ import android.widget.Toast;
 
 import com.alfredobejarano.superfriends.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Defines a placeholder for all activities in the app.
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    @BindView(R.id.loading_view)
-    ConstraintLayout mLoadingView;
-    @BindView(R.id.content)
-    FrameLayout mContent;
+    private ConstraintLayout mLoadingView;
 
     /**
      * Creates the activity, sets the content view as the layout found in
-     * activity_base.xml and inflates the child of this class into the
+     * view_loadingxml and inflates the child of this class into the
      * container FrameLayout.
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // Create the activity.
         super.onCreate(savedInstanceState);
-        // Set the activity_base.xml as the layout for this activity.
-        setContentView(R.layout.activity_base);
-        // Inflate the content of this class child into the FrameLayout.
-        getLayoutInflater().inflate(getLayoutId(), mContent);
-        // Bind the views annotated with @BindView.
-        ButterKnife.bind(this);
+        // Set the view_loading.xmlas the layout for this activity.
+        setContentView(getLayoutId());
+        mLoadingView = findViewById(R.id.loading_view);
     }
 
     /**
@@ -60,6 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Displays a Toast containing an error message.
+     *
      * @param error The error message value.
      */
     @SuppressLint("ShowToast")

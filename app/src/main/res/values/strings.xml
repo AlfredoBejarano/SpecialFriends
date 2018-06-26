@@ -6,4 +6,8 @@
     <string name="facebook_app_id">1874933972566991</string>
     <string name="fb_login_protocol_scheme">fb1874933972566991</string>
     <string name="facebook_login_cancelled">Facebook login has been cancelled</string>
+    <string name="friends">Friends</string>
+    <string name="special">Special</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="enter_with_facebook">Enter with Facebook</string>
 </resources>
