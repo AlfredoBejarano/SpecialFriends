@@ -1,18 +1,50 @@
 package com.alfredobejarano.superfriends.common.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 /**
  * Model class that defines the structure of the data
  * necessary to represent a friend in the app.
  *
  * @author Alfredo Bejarano
  */
+@Entity
 public class Friend {
+    @PrimaryKey(autoGenerate = true)
+    private Integer id;
     private String name;
     private String note;
     private String picture;
     private String birthday;
     private Boolean favorite;
     private String phoneNumber;
+
+    /**
+     * Constructor for Room to use.
+     * @param name The name of the friend.
+     * @param note The note text value for the friend.
+     * @param picture The profile picture for the friend.
+     * @param birthday The birthday value for the friend.
+     * @param favorite The favorite value for the friend.
+     * @param phoneNumber The phone number value for the friend.
+     */
+    public Friend(String name, String note, String picture, String birthday, Boolean favorite, String phoneNumber) {
+        this.name = name;
+        this.note = note;
+        this.picture = picture;
+        this.birthday = birthday;
+        this.favorite = favorite;
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Gets the Id for the friend in the local database.
+     * @return The id of the friend in the local database.
+     */
+    public Integer getId() {
+        return id;
+    }
 
     /**
      * Gets the name of the friend.
