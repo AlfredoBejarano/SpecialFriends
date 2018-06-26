@@ -39,6 +39,14 @@ public class Friend {
     }
 
     /**
+     * This method allows room to set an ID for this class.
+     * @param id The id value for this class.
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
      * Gets the Id for the friend in the local database.
      * @return The id of the friend in the local database.
      */

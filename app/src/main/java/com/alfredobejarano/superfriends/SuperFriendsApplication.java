@@ -11,7 +11,7 @@ import static com.alfredobejarano.superfriends.common.repository.SuperFriendsDat
 
 
 public class SuperFriendsApplication extends Application {
-    static SuperFriendsDatabase superFriendsDatabase;
+    public static SuperFriendsDatabase superFriendsDatabase;
 
     @Override
     @SuppressWarnings("deprecation")
