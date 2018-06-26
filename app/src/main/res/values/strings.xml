@@ -3,4 +3,6 @@
     <string name="friend_picture">Friend picture</string>
     <string name="friend_favorite">favorite friend</string>
     <string name="search_friend">Buscar en tus amigos</string>
+    <string name="facebook_app_id">1874933972566991</string>
+    <string name="fb_login_protocol_scheme">fb1874933972566991</string>
 </resources>

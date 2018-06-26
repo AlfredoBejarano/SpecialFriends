@@ -47,12 +47,20 @@
             tools:text="Friends" />
     </LinearLayout>
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/welcome_fb_login_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/welcome_login_button"
+        style="@style/green_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Enter with Facebook"
-        style="@style/green_button" />
+        tools:text="Enter with Facebook" />
 </android.support.constraint.ConstraintLayout>
