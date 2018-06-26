@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SuperFriends</string>
+    <string name="friend_picture">Friend picture</string>
 </resources>
