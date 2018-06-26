@@ -19,7 +19,7 @@ public class BaseViewModel extends AndroidViewModel {
     /**
      * Property that defines if the ViewModel is busy or not.
      */
-    protected MutableLiveData<ViewModelState> state = new MutableLiveData<>();
+    public MutableLiveData<ViewModelState> state = new MutableLiveData<>();
     /**
      * Property that holds a reference to the local database.
      */
