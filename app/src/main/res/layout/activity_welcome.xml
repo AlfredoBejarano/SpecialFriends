@@ -49,19 +49,10 @@
 
     <Button
         android:id="@+id/welcome_login_button"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="12dp"
-        android:background="@drawable/bk_login_button"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Enter with Facebook" />
+        tools:text="Enter with Facebook"
+        style="@style/green_button" />
 </android.support.constraint.ConstraintLayout>
