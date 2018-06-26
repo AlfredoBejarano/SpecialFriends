@@ -1,11 +1,13 @@
 package com.alfredobejarano.superfriends.common.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.alfredobejarano.superfriends.R;
 
@@ -15,9 +17,11 @@ import butterknife.ButterKnife;
 /**
  * Defines a placeholder for all activities in the app.
  */
-abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     @BindView(R.id.loading_view)
     ConstraintLayout mLoadingView;
+    @BindView(R.id.content)
+    FrameLayout mContent;
 
     /**
      * Creates the activity, sets the content view as the layout found in
@@ -31,24 +35,46 @@ abstract class BaseActivity extends AppCompatActivity {
         // Set the activity_base.xml as the layout for this activity.
         setContentView(R.layout.activity_base);
         // Inflate the content of this class child into the FrameLayout.
-        getLayoutInflater().inflate(getLayoutId(), (FrameLayout) findViewById(R.id.content));
+        getLayoutInflater().inflate(getLayoutId(), mContent);
         // Bind the views annotated with @BindView.
         ButterKnife.bind(this);
     }
 
     /**
      * This method should return a Integer defining a @LayoutRes value.
+     *
      * @return The layout ID defining the content of this class.
      */
-    abstract Integer getLayoutId();
+    protected abstract Integer getLayoutId();
 
     /**
      * Displays or hides the loading view.
+     *
      * @param displayView true for displaying the view or false to hide it.
      */
     protected void displayLoadingView(Boolean displayView) {
-        if(mLoadingView != null) {
+        if (mLoadingView != null) {
             mLoadingView.setVisibility(displayView ? View.VISIBLE : View.GONE);
         }
+    }
+
+    /**
+     * Displays a Toast containing an error message.
+     * @param error The error message value.
+     */
+    @SuppressLint("ShowToast")
+    protected void displayError(Object error) {
+        // Initializes a Toast instance.
+        Toast t;
+        if (error instanceof Integer) {
+            // Display the error as an string res value if the error object is an Integer.
+            t = Toast.makeText(this, (Integer) error, Toast.LENGTH_SHORT);
+        } else {
+            // Display the string value of the error if it is not an Integer.
+            t = Toast.makeText(this, String.valueOf(error), Toast.LENGTH_SHORT);
+        }
+
+        // Display the toast.
+        t.show();
     }
 }
