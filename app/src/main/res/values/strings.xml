@@ -12,4 +12,8 @@
     <string name="enter_with_facebook">Enter with Facebook</string>
     <string name="error_while_getting_profile_picture">Something wrong happened while retrieving your profile picture</string>
     <string name="log_out">Log out</string>
+    <string name="name">name</string>
+    <string name="birthday">Birthday</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="notes">Notes</string>
 </resources>

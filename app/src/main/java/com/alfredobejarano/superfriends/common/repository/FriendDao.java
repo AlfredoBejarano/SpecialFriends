@@ -34,6 +34,14 @@ public interface FriendDao {
     void addFriend(Friend friend);
 
     /**
+     * Queries through the database and retrieves a friend record.
+     * @param friendId The id to search from the database.
+     * @return The friend found by the given id.
+     */
+    @Query("SELECT * FROM Friend WHERE id = :friendId")
+    Friend getFriendById(Integer friendId);
+
+    /**
      * Removes all the Friend records.
      */
     @Query("DELETE FROM Friend")

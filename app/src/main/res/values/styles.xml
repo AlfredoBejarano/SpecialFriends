@@ -24,4 +24,12 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="profile_label">
+        <item name="android:textColor">@color/colorVeryDarkCyan</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
