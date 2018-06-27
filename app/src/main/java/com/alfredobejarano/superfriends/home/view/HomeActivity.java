@@ -3,20 +3,19 @@ package com.alfredobejarano.superfriends.home.view;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.alfredobejarano.superfriends.R;
+import com.alfredobejarano.superfriends.common.ViewModelState;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
 import com.alfredobejarano.superfriends.databinding.ActivityHomeBinding;
 import com.alfredobejarano.superfriends.home.viewmodel.HomeViewModel;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -47,7 +46,14 @@ public class HomeActivity extends BaseActivity {
         binding.setUser(homeViewModel);
         binding.setLifecycleOwner(this);
         setContentView(binding.getRoot());
+        setSupportActionBar((Toolbar) findViewById(R.id.home_toolbar));
         initializeProfilePictureView();
+        homeViewModel.state.observe(this, new Observer<ViewModelState>() {
+            @Override
+            public void onChanged(@Nullable ViewModelState viewModelState) {
+                displayLoadingView(viewModelState == ViewModelState.STATE_BUSY);
+            }
+        });
     }
 
     /**
@@ -63,5 +69,19 @@ public class HomeActivity extends BaseActivity {
                 Picasso.with(context).load(picture).into(profilePicture, circularCallback);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_log_out) {
+            homeViewModel.closeSession();
+        }
+        return true;
     }
 }

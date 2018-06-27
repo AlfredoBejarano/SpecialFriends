@@ -3,6 +3,7 @@ package com.alfredobejarano.superfriends.common.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.alfredobejarano.superfriends.SuperFriendsApplication;
@@ -32,6 +33,7 @@ public class BaseViewModel extends AndroidViewModel {
      * Property that holds a reference to the {@link FriendDao}, allowing faster access to the Friend table.
      */
     protected FriendDao friendDao = database.getFriendDao();
+
 
     /**
      * Constructor for this {@link AndroidViewModel} child.

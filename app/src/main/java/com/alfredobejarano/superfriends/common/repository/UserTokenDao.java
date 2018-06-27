@@ -34,5 +34,5 @@ public interface UserTokenDao {
      * Removes all the user tokens from the local database.
      */
     @Query("DELETE FROM UserToken")
-    void deleteUserTokens();
+    void deleteAllUserTokens();
 }

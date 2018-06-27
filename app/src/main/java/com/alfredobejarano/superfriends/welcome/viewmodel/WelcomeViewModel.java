@@ -89,7 +89,7 @@ public class WelcomeViewModel extends BaseViewModel {
                             context.startActivity(new Intent(context, HomeActivity.class));
                         } else {
                             // Delete all the tokens.
-                            tokenDao.deleteUserTokens();
+                            tokenDao.deleteAllUserTokens();
                         }
                         // Notify that the ViewModel is ready to perform more operations.
                         state.postValue(ViewModelState.STATE_READY);

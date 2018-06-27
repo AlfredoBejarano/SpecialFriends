@@ -37,5 +37,5 @@ public interface FriendDao {
      * Removes all the Friend records.
      */
     @Query("DELETE FROM Friend")
-    void removeFriends();
+    void deleteAllFriends();
 }

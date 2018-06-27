@@ -97,5 +97,6 @@
             app:layout_constraintTop_toBottomOf="@id/home_favorite_friends"
             tools:listitem="@layout/item_friend" />
 
+        <include layout="@layout/view_loading" android:visibility="gone"/>
     </android.support.constraint.ConstraintLayout>
 </layout>
