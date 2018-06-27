@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.alfredobejarano.superfriends.R;
 import com.alfredobejarano.superfriends.common.ViewModelState;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
+import com.alfredobejarano.superfriends.common.view.CircularCallback;
 import com.alfredobejarano.superfriends.databinding.ActivityHomeBinding;
 import com.alfredobejarano.superfriends.home.viewmodel.HomeViewModel;
 import com.squareup.picasso.Picasso;
