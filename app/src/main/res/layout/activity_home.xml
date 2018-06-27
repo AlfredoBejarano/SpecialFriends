@@ -1,90 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/home_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:elevation="@dimen/toolbar_elevation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:popupTheme="?attr/actionBarStyle"
-        tools:ignore="UnusedAttribute">
+    <data>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <variable
+            name="user"
+            type="com.alfredobejarano.superfriends.home.viewmodel.HomeViewModel" />
+    </data>
 
-            <ImageView
-                android:id="@+id/home_toolbar_picture"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@drawable/bk_friend_picture_toolbar"
-                android:contentDescription="@string/friend_picture"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/home_toolbar_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/colorLightGrayishBlue"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/home_toolbar_picture"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Santiago Sada" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/home_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/toolbar_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:popupTheme="?attr/actionBarStyle"
+            tools:ignore="UnusedAttribute">
 
-    <EditText
-        android:id="@+id/home_search_view"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="11dp"
-        android:background="@drawable/bk_search_field"
-        android:drawablePadding="7dp"
-        android:drawableStart="@drawable/ic_search"
-        android:gravity="start|center_vertical"
-        android:hint="@string/search_friend"
-        android:imeOptions="actionSearch"
-        android:inputType="textAutoComplete"
-        android:padding="7dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_toolbar" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/home_favorite_friends"
-        android:layout_width="0dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_search_view"
-        tools:listitem="@layout/item_favorite_friend" />
+                <ImageView
+                    android:id="@+id/home_toolbar_picture"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bk_friend_picture_toolbar"
+                    android:contentDescription="@string/friend_picture"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/home_friends"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_favorite_friends"
-        tools:listitem="@layout/item_friend" />
+                <TextView
+                    android:id="@+id/home_toolbar_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{user.userInformation.name}"
+                    android:textColor="@color/colorLightGrayishBlue"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/home_toolbar_picture"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Santiago Sada" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.Toolbar>
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/home_search_view"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/bk_search_field"
+            android:drawablePadding="7dp"
+            android:drawableStart="@drawable/ic_search"
+            android:gravity="start|center_vertical"
+            android:hint="@string/search_friend"
+            android:imeOptions="actionSearch"
+            android:inputType="textAutoComplete"
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_toolbar" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_favorite_friends"
+            android:layout_width="0dp"
+            android:layout_height="122dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_search_view"
+            tools:listitem="@layout/item_favorite_friend" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_friends"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_favorite_friends"
+            tools:listitem="@layout/item_friend" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

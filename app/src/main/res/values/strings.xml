@@ -10,4 +10,5 @@
     <string name="special">Special</string>
     <string name="welcome_to">Welcome to</string>
     <string name="enter_with_facebook">Enter with Facebook</string>
+    <string name="error_while_getting_profile_picture">Something wrong happened while retrieving your profile picture</string>
 </resources>
