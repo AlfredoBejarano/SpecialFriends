@@ -45,5 +45,4 @@
             android:name=".home.view.HomeActivity"
             />
     </application>
-
 </manifest>
