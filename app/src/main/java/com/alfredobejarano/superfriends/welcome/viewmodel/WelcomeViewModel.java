@@ -57,7 +57,9 @@ public class WelcomeViewModel extends BaseViewModel {
                         new Handler(context.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
-                                context.startActivity(new Intent(context, HomeActivity.class));
+                                Intent homeIntent = new Intent(context, HomeActivity.class);
+                                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                context.startActivity(homeIntent);
                                 state.setValue(ViewModelState.STATE_READY);
                             }
                         });
@@ -75,7 +77,6 @@ public class WelcomeViewModel extends BaseViewModel {
         if (state.getValue() == ViewModelState.STATE_READY) {
             // Indicate that the ViewModel is busy.
             final Context context = getApplication().getApplicationContext();
-            final SuperFriendsDatabase database = SuperFriendsApplication.superFriendsDatabase;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -86,7 +87,9 @@ public class WelcomeViewModel extends BaseViewModel {
                         // Check if there is only one session. Multiple sessions are not allowed.
                         if (tokens != null && tokens.size() == 1) {
                             // Start the HomeActivity if just one token exists.
-                            context.startActivity(new Intent(context, HomeActivity.class));
+                            Intent homeIntent = new Intent(context, HomeActivity.class);
+                            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            context.startActivity(homeIntent);
                         } else {
                             // Delete all the tokens.
                             tokenDao.deleteAllUserTokens();

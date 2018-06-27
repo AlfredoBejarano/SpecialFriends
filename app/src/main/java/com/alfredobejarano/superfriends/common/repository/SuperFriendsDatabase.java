@@ -7,7 +7,7 @@ import com.alfredobejarano.superfriends.BuildConfig;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.welcome.model.UserToken;
 
-@Database(entities = {Friend.class, UserToken.class}, version = 1)
+@Database(entities = {Friend.class, UserToken.class}, version = 4)
 public abstract class SuperFriendsDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "SuperFriendsDatabase" + BuildConfig.BUILD_TYPE;
 

@@ -17,7 +17,10 @@ public class SuperFriendsApplication extends Application {
     @SuppressWarnings("deprecation")
     public void onCreate() {
         super.onCreate();
-        superFriendsDatabase = Room.databaseBuilder(getApplicationContext(), SuperFriendsDatabase.class, DATABASE_NAME).build();
+        superFriendsDatabase = Room.databaseBuilder(getApplicationContext(), SuperFriendsDatabase.class, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
     }

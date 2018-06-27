@@ -68,7 +68,7 @@
             android:drawableStart="@drawable/ic_search"
             android:gravity="start|center_vertical"
             android:hint="@string/search_friend"
-            android:imeOptions="actionSearch"
+            android:imeOptions="actionDone"
             android:inputType="textAutoComplete"
             android:padding="7dp"
             app:layout_constraintEnd_toEndOf="parent"

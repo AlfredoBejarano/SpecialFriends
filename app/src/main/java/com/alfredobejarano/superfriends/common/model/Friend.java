@@ -18,6 +18,7 @@ public class Friend {
     private String picture;
     private String birthday;
     private Boolean favorite;
+    private String faceBookId;
     private String phoneNumber;
 
     /**
@@ -29,12 +30,13 @@ public class Friend {
      * @param favorite The favorite value for the friend.
      * @param phoneNumber The phone number value for the friend.
      */
-    public Friend(String name, String note, String picture, String birthday, Boolean favorite, String phoneNumber) {
+    public Friend(String name, String note, String picture, String birthday, Boolean favorite,String faceBookId, String phoneNumber) {
         this.name = name;
         this.note = note;
         this.picture = picture;
         this.birthday = birthday;
         this.favorite = favorite;
+        this.faceBookId = faceBookId;
         this.phoneNumber = phoneNumber;
     }
 
@@ -132,5 +134,21 @@ public class Friend {
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Gets the given Facebook id for a Friend.
+     * @return The Facebook id of the friend.
+     */
+    public String getFaceBookId() {
+        return faceBookId;
+    }
+
+    /**
+     * Allows the user to change the facebook Id for a friend.
+     * @param faceBookId The new value for the phone number.
+     */
+    public void setFaceBookId(String faceBookId) {
+        this.faceBookId = faceBookId;
     }
 }
