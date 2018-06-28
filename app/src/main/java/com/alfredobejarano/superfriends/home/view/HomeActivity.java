@@ -22,6 +22,7 @@ import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
 import com.alfredobejarano.superfriends.common.view.CircularCallback;
 import com.alfredobejarano.superfriends.databinding.ActivityHomeBinding;
+import com.alfredobejarano.superfriends.home.adapter.FavoriteFriendsAdapter;
 import com.alfredobejarano.superfriends.home.adapter.FriendsAdapter;
 import com.alfredobejarano.superfriends.home.viewmodel.HomeViewModel;
 import com.squareup.picasso.Picasso;
@@ -49,6 +50,12 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_home;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Assigns observers for the ViewModel LiveData values and performs
+     * data binding to the XML layout for this activity.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,8 +114,9 @@ public class HomeActivity extends BaseActivity {
         friendsList = findViewById(R.id.home_friends);
         // Get the RecyclerView that will display the favorite friends.
         favoriteFriendsList = findViewById(R.id.home_favorite_friends);
-        // Set the
+        // Set the adapter for the friends list.
         friendsList.setAdapter(new FriendsAdapter());
+        // Changes the friends data set for the friends list.
         homeViewModel.friends.observe(this, new Observer<List<Friend>>() {
             @Override
             public void onChanged(@Nullable List<Friend> friends) {
@@ -123,18 +131,35 @@ public class HomeActivity extends BaseActivity {
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         // Set the horizontal LayoutManager to the Favorite friends RecyclerView.
         favoriteFriendsList.setLayoutManager(manager);
+        // Set the adapter for the favorite friends list.
+        favoriteFriendsList.setAdapter(new FavoriteFriendsAdapter());
+        // Changes the friends data set for the favorite friends list.
+        homeViewModel.favoriteFriends.observe(this, new Observer<List<Friend>>() {
+            @Override
+            public void onChanged(@Nullable List<Friend> friends) {
+                ((FavoriteFriendsAdapter) favoriteFriendsList.getAdapter()).setFriends(friends);
+            }
+        });
         homeViewModel.fetchFriends();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Checks if the log out button has been pressed.
         if (item.getItemId() == R.id.menu_log_out) {
+            // If so, close the current session.
             homeViewModel.closeSession();
         }
         return true;

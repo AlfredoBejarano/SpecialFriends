@@ -5,17 +5,14 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.alfredobejarano.superfriends.R;
-import com.alfredobejarano.superfriends.common.ViewModelState;
-import com.alfredobejarano.superfriends.common.model.Friend;
+import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
 import com.alfredobejarano.superfriends.databinding.ActivityProfileBinding;
 import com.alfredobejarano.superfriends.profile.viewmodel.ProfileViewModel;
