@@ -27,6 +27,7 @@
         android:maxLines="1"
         android:textColor="@color/colorVeryDarkCyan"
         android:textSize="22sp"
+        android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/item_friend_favorite"
         app:layout_constraintStart_toEndOf="@id/item_friend_picture"
