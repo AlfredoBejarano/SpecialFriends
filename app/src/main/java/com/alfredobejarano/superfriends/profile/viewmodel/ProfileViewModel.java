@@ -36,6 +36,7 @@ public class ProfileViewModel extends BaseViewModel {
                         profileInformation.name.postValue(friend.getName());
                         profileInformation.photo.postValue(friend.getPicture());
                         profileInformation.description.postValue(friend.getNote());
+                        profileInformation.favorite.postValue(friend.isFavorite());
                         profileInformation.birthday.postValue(friend.getBirthday());
                     }
                 }

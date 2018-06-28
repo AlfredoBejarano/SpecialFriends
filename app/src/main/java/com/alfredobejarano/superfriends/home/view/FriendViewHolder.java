@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import com.alfredobejarano.superfriends.R;
 import com.alfredobejarano.superfriends.common.model.Friend;
-import com.alfredobejarano.superfriends.common.view.CircularCallback;
-import com.squareup.picasso.Picasso;
 
 /**
  * Defines a visual representation of a Friend.
@@ -33,7 +31,7 @@ public class FriendViewHolder extends RecyclerView.ViewHolder {
             Picasso.with(itemView.getContext()).load(friend.getPicture()).into(photo, new CircularCallback(photo));
         }**/
         if (favorite != null) {
-            favorite.setImageResource(friend.getFavorite() ? R.drawable.ic_star_full : R.drawable.ic_star_border);
+            favorite.setImageResource(friend.isFavorite() ? R.drawable.ic_star_full : R.drawable.ic_star_border);
         }
     }
 }

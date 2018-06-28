@@ -108,7 +108,7 @@ public class Friend {
      * Gets if the user is a favorite friend or not.
      * @return true if the friend is a favorite
      */
-    public Boolean getFavorite() {
+    public Boolean isFavorite() {
         return favorite;
     }
 
