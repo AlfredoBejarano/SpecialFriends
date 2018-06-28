@@ -1,4 +1,4 @@
-package com.alfredobejarano.superfriends.profile.view;
+package com.alfredobejarano.superfriends.profile.viewmodel;
 
 import android.app.Application;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import com.alfredobejarano.superfriends.profile.model.ProfileInformation;
 
 public class ProfileViewModel extends BaseViewModel {
     private Friend friend;
-    ProfileInformation profileInformation;
+    public ProfileInformation profileInformation;
 
     /**
      * {@inheritDoc}
