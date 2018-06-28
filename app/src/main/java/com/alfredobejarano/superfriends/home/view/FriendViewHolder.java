@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alfredobejarano.superfriends.R;
+import com.alfredobejarano.superfriends.SuperFriendsApplication;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.profile.view.ProfileActivity;
 
@@ -36,11 +37,40 @@ public class FriendViewHolder extends RecyclerView.ViewHolder {
         }
 
         // Go to the profile activity when the friend is not a title.
-        if(friend.getFaceBookId() != null) {
+        if (friend.getFaceBookId() != null) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     v.getContext().startActivity(ProfileActivity.provideIntent(v.getContext(), friend.getId()));
+                }
+            });
+            // Changes the favorite status of a friend when the star is clicked.
+            favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Check the friend favorite status.
+                    if (friend.isFavorite()) {
+                        // Invert it.
+                        friend.setFavorite(false);
+                        // Change the star drawable depending on the new value.>
+                        favorite.setImageResource(R.drawable.ic_star_border);
+                    } else {
+                        // Invert it.
+                        friend.setFavorite(true);
+                        // Change the star drawable depending on the new value.>
+                        favorite.setImageResource(R.drawable.ic_star_full);
+                    }
+                    // Updates the new friend info in a worker thread.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Retrieve the local database instance and store the value.
+                            SuperFriendsApplication
+                                    .superFriendsDatabase
+                                    .getFriendDao()
+                                    .addFriend(friend);
+                        }
+                    }).start();
                 }
             });
         }
