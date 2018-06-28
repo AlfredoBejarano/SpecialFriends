@@ -10,7 +10,7 @@
     android:paddingStart="8dp">
 
     <ImageView
-        android:id="@+id/item_friend_picture"
+        android:id="@+id/item_favorite_friend_picture"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/bk_friend_picture"
@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/item_favorite_friend_name"
         android:layout_width="0dp"
         android:layout_height="36dp"
         android:layout_marginTop="6dp"
@@ -29,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_friend_picture"
+        app:layout_constraintTop_toBottomOf="@id/item_favorite_friend_picture"
         tools:text="Andrea Molina" />
 
 </android.support.constraint.ConstraintLayout>
