@@ -17,18 +17,18 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/profile_toolbar"
             android:layout_width="0dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:elevation="@dimen/toolbar_elevation"
-            app:titleTextColor="@android:color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:popupTheme="?attr/actionBarStyle"
+            app:titleTextColor="@android:color/white"
             tools:ignore="UnusedAttribute" />
 
-        <requestFocus/>
+        <requestFocus />
 
         <ImageView
             android:id="@+id/profile_picture"
@@ -108,13 +108,21 @@
                 <EditText
                     android:id="@+id/profile_notes_input"
                     style="@style/profile_field"
-                    android:gravity="start|top"
                     android:layout_height="141dp"
+                    android:gravity="start|top"
                     android:imeOptions="actionDone"
                     android:inputType="textAutoCorrect"
                     android:text="@{profile.profileInformation.description}" />
             </LinearLayout>
         </ScrollView>
 
+        <include
+            android:id="@+id/loading_view"
+            layout="@layout/view_loading"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </layout>
