@@ -32,4 +32,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
+    <style name="profile_field">
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:background">@drawable/bk_profile_field</item>
+    </style>
 </resources>

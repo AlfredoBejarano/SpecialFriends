@@ -7,7 +7,7 @@
 
         <variable
             name="profile"
-            type="com.alfredobejarano.superfriends.profile.model.ProfileInformation"/>
+            type="com.alfredobejarano.superfriends.profile.viewmodel.ProfileViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:gravity="center"
+            android:text="@{profile.profileInformation.name}"
             android:textColor="@color/colorVeryDarkCyan"
             android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,31 +50,65 @@
             app:layout_constraintTop_toBottomOf="@+id/profile_picture"
             tools:text="Andrea Molina" />
 
-        <LinearLayout
-            android:id="@+id/profile_contents"
+        <ScrollView
+            android:id="@+id/profile_scroll"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginStart="18dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/profile_friend_name">
-            <TextView
-                android:id="@+id/profile_birthday_label"
-                android:text="@string/birthday"
-                style="@style/profile_label" />
-            <TextView
-                android:id="@+id/profile_phone_number_label"
-                android:text="@string/phone_number"
-                style="@style/profile_label" />
-            <TextView
-                android:id="@+id/profile_notes_label"
-                android:text="@string/notes"
-                style="@style/profile_label" />
-        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_contents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/profile_birthday_label"
+                    style="@style/profile_label"
+                    android:labelFor="@id/profile_birthday_input"
+                    android:text="@string/birthday" />
+
+                <EditText
+                    android:id="@+id/profile_birthday_input"
+                    style="@style/profile_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="datetime"
+                    android:text="@{profile.profileInformation.birthday}" />
+
+                <TextView
+                    android:id="@+id/profile_phone_number_label"
+                    style="@style/profile_label"
+                    android:labelFor="@id/profile_phone_number_input"
+                    android:text="@string/phone_number" />
+
+                <EditText
+                    android:id="@+id/profile_phone_number_input"
+                    style="@style/profile_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:text="@{profile.profileInformation.phoneNumber}" />
+
+                <TextView
+                    android:id="@+id/profile_notes_label"
+                    style="@style/profile_label"
+                    android:labelFor="@id/profile_notes_input"
+                    android:text="@string/notes" />
+
+                <EditText
+                    android:id="@+id/profile_notes_input"
+                    style="@style/profile_field"
+                    android:layout_height="141dp"
+                    android:imeOptions="actionDone"
+                    android:inputType="textAutoCorrect"
+                    android:text="@{profile.profileInformation.description}" />
+            </LinearLayout>
+        </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
