@@ -17,13 +17,18 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/profile_toolbar"
             android:layout_width="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:elevation="@dimen/toolbar_elevation"
+            app:titleTextColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:popupTheme="?attr/actionBarStyle"
             tools:ignore="UnusedAttribute" />
+
+        <requestFocus/>
 
         <ImageView
             android:id="@+id/profile_picture"

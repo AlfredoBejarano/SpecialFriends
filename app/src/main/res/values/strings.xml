@@ -16,4 +16,5 @@
     <string name="birthday">Birthday</string>
     <string name="phone_number">Phone Number</string>
     <string name="notes">Notes</string>
+    <string name="no_user_found">No user was found</string>
 </resources>
