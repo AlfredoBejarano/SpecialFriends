@@ -7,9 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 
-import com.alfredobejarano.superfriends.SuperFriendsApplication;
-import com.alfredobejarano.superfriends.common.ViewModelState;
-import com.alfredobejarano.superfriends.common.repository.SuperFriendsDatabase;
+import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.common.viewmodel.BaseViewModel;
 import com.alfredobejarano.superfriends.home.view.HomeActivity;
 import com.alfredobejarano.superfriends.welcome.model.UserToken;

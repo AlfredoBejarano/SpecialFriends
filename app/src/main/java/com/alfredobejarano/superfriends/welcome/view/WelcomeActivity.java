@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.alfredobejarano.superfriends.R;
-import com.alfredobejarano.superfriends.common.ViewModelState;
+import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
 import com.alfredobejarano.superfriends.welcome.viewmodel.WelcomeViewModel;
 import com.facebook.CallbackManager;

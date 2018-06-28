@@ -3,11 +3,9 @@ package com.alfredobejarano.superfriends.common.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.alfredobejarano.superfriends.SuperFriendsApplication;
-import com.alfredobejarano.superfriends.common.ViewModelState;
 import com.alfredobejarano.superfriends.common.repository.FriendDao;
 import com.alfredobejarano.superfriends.common.repository.SuperFriendsDatabase;
 import com.alfredobejarano.superfriends.common.repository.UserTokenDao;

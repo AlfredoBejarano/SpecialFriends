@@ -8,9 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.alfredobejarano.superfriends.common.ViewModelState;
+import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.common.viewmodel.BaseViewModel;
 import com.alfredobejarano.superfriends.home.model.UserInformation;

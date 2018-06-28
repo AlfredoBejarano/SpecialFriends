@@ -1,4 +1,4 @@
-package com.alfredobejarano.superfriends.common;
+package com.alfredobejarano.superfriends.common.viewmodel;
 
 /**
  * Enum class that defines different states in which a ViewModel can be in.

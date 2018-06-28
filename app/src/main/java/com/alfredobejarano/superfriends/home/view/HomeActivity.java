@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alfredobejarano.superfriends.R;
-import com.alfredobejarano.superfriends.common.ViewModelState;
+import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
 import com.alfredobejarano.superfriends.common.view.CircularCallback;
