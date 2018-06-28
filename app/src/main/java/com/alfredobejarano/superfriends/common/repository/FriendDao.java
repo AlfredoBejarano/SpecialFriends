@@ -25,6 +25,14 @@ public interface FriendDao {
     List<Friend> getFriends();
 
     /**
+     * Retrieves all the favorite friends from the local storage.
+     *
+     * @return A {@link List} of {@link Friend}s ordered alphabetically.
+     */
+    @Query("SELECT * FROM Friend WHERE favorite = 1 ORDER BY name")
+    List<Friend> getFavoriteFriends();
+
+    /**
      * Inserts a {@link Friend} in the local storage database.
      * It replaces a Friend that has been already added.
      *
@@ -40,6 +48,14 @@ public interface FriendDao {
      */
     @Query("SELECT * FROM Friend WHERE id = :friendId")
     Friend getFriendById(Integer friendId);
+
+    /**
+     * Queries through the database and retrieves a friend record.
+     * @param friendId The id to search from the database.
+     * @return The friend found by the given id.
+     */
+    @Query("SELECT * FROM Friend WHERE faceBookId = :friendId")
+    Friend getFriendByFBId(String friendId);
 
     /**
      * Removes all the Friend records.

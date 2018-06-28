@@ -9,9 +9,9 @@ import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.common.viewmodel.BaseViewModel;
+import com.alfredobejarano.superfriends.common.viewmodel.ViewModelState;
 import com.alfredobejarano.superfriends.home.model.UserInformation;
 import com.alfredobejarano.superfriends.welcome.model.UserToken;
 import com.alfredobejarano.superfriends.welcome.view.WelcomeActivity;
@@ -79,7 +79,7 @@ public class HomeViewModel extends BaseViewModel {
      * storage database or from the Facebook profile.
      */
     public void fetchFriends() {
-        if(friends.getValue() == null) {
+        if (friends.getValue() == null) {
             // Notify that the ViewModel is busy.
             state.postValue(ViewModelState.STATE_BUSY);
             // run a new worker thread for database and network operations.
@@ -89,12 +89,14 @@ public class HomeViewModel extends BaseViewModel {
                     // Fetch the local stored friends.
                     List<Friend> lFriends = friendDao.getFriends();
                     // Retrieve the friends from the facebook profile.
-                    if(lFriends.isEmpty() && isNetworkAvailable()) {
+                    if (isNetworkAvailable()) {
                         fetchFriendsFromFacebook();
                     } else {
                         // Retrieve the friends from the local database
                         friends.postValue(lFriends);
                     }
+                    List<Friend> lFavoriteFriends = friendDao.getFavoriteFriends();
+                    favoriteFriends.postValue(lFavoriteFriends);
                     state.postValue(ViewModelState.STATE_READY);
                 }
             }).start();
@@ -152,10 +154,13 @@ public class HomeViewModel extends BaseViewModel {
                             String fbId = facebookFriend.getString("id");
                             // Get the current friend name.
                             String name = facebookFriend.getString("name");
-                            // Add the friend.
-                            friendDao.addFriend(
-                                    new Friend(name, "", "", "", false, fbId, "")
-                            );
+                            Friend storedFriend = friendDao.getFriendByFBId(fbId);
+                            if (storedFriend == null) {
+                                // Add the friend.
+                                friendDao.addFriend(
+                                        new Friend(name, "", "", "", false, fbId, "")
+                                );
+                            }
                         }
                         // Notify to the ViewModel that the friends list has been updated.
                         friends.postValue(friendDao.getFriends());
