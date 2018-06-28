@@ -108,6 +108,7 @@
                 <EditText
                     android:id="@+id/profile_notes_input"
                     style="@style/profile_field"
+                    android:gravity="start|top"
                     android:layout_height="141dp"
                     android:imeOptions="actionDone"
                     android:inputType="textAutoCorrect"

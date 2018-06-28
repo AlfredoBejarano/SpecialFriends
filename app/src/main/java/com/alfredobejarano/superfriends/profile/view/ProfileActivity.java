@@ -5,13 +5,17 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.alfredobejarano.superfriends.R;
 import com.alfredobejarano.superfriends.common.ViewModelState;
+import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.common.view.BaseActivity;
 import com.alfredobejarano.superfriends.databinding.ActivityProfileBinding;
 import com.alfredobejarano.superfriends.profile.viewmodel.ProfileViewModel;
@@ -66,6 +70,13 @@ public class ProfileActivity extends BaseActivity {
                 displayLoadingView(viewModelState == ViewModelState.STATE_BUSY);
             }
         });
+        // Observers changes on the ViewModel for displaying an error message.
+        mViewModel.errorMessage.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer message) {
+                displayError(message);
+            }
+        });
         // Observers changes on the ViewModel for changing the current menu drawable.
         mViewModel.favoriteMenu.observe(this, new Observer<Boolean>() {
             @Override
@@ -81,13 +92,8 @@ public class ProfileActivity extends BaseActivity {
                 }
             }
         });
-        // Observers changes on the ViewModel for displaying an error message.
-        mViewModel.errorMessage.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer message) {
-                displayError(message);
-            }
-        });
+        // Fetches the friend from the database.
+        fetchFriendInformation();
     }
 
     /**
@@ -107,6 +113,10 @@ public class ProfileActivity extends BaseActivity {
         mMenu = menu;
         // Inflate the menu layout.
         getMenuInflater().inflate(R.menu.menu_profile, menu);
+        // Set the correct drawable for the menu option.
+        if(mViewModel.friend != null) {
+            mMenu.getItem(0).setIcon(mViewModel.friend.isFavorite() ? R.drawable.ic_star_menu : R.drawable.ic_star_border_menu);
+        }
         return true;
     }
 
@@ -125,8 +135,38 @@ public class ProfileActivity extends BaseActivity {
                 mViewModel.favoriteMenu.setValue(!isFavorite);
             }
         } else {
-            super.onBackPressed();
+            onBackPressed();
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mViewModel.friend != null) {
+            // Get the editable widgets.
+            EditText notes = findViewById(R.id.profile_notes_input);
+            EditText birthday = findViewById(R.id.profile_birthday_input);
+            EditText phoneNumber = findViewById(R.id.profile_phone_number_input);
+            // Assign the value of those widgets to the friend located in the ViewModel.
+            mViewModel.friend.setNote(String.valueOf(notes.getText()));
+            mViewModel.friend.setBirthday(String.valueOf(birthday.getText()));
+            mViewModel.friend.setPhoneNumber(String.valueOf(phoneNumber.getText()));
+            // Store the friend's new values.
+            mViewModel.storeFriend();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    /**
+     * Retrieves the friend ID from the extras and fetches it from the local database.
+     */
+    private void fetchFriendInformation() {
+        // Get a null-safe Intent.
+        Intent extrasIntent = (getIntent() != null ? getIntent() : new Intent());
+        // Get the friend Id extra from said intent.
+        Integer friendId = extrasIntent.getIntExtra(FRIEND_ID, 0 );
+        // Retrieve the friend from the database.
+        mViewModel.getFriendProfile(friendId);
     }
 }

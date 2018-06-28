@@ -14,9 +14,9 @@ import com.alfredobejarano.superfriends.profile.model.ProfileInformation;
 
 public class ProfileViewModel extends BaseViewModel {
     public Friend friend;
-    public ProfileInformation profileInformation;
     public MutableLiveData<Integer> errorMessage = new MutableLiveData<>();
     public MutableLiveData<Boolean> favoriteMenu = new MutableLiveData<>();
+    public ProfileInformation profileInformation = new ProfileInformation();
 
     /**
      * {@inheritDoc}
@@ -44,6 +44,7 @@ public class ProfileViewModel extends BaseViewModel {
                         profileInformation.description.postValue(friend.getNote());
                         profileInformation.favorite.postValue(friend.isFavorite());
                         profileInformation.birthday.postValue(friend.getBirthday());
+                        profileInformation.phoneNumber.postValue(friend.getPhoneNumber());
                     } else {
                         errorMessage.postValue(R.string.no_user_found);
                     }
@@ -58,6 +59,8 @@ public class ProfileViewModel extends BaseViewModel {
      */
     public void storeFriend() {
         if(friend != null) {
+            // Notify that the ViewModel is busy.
+            state.setValue(ViewModelState.STATE_BUSY);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -66,7 +69,7 @@ public class ProfileViewModel extends BaseViewModel {
                     homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     getApplication().getApplicationContext().startActivity(homeIntent);
                 }
-            });
+            }).start();
         }
     }
 }
