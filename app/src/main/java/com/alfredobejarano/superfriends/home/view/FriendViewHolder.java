@@ -8,18 +8,21 @@ import android.widget.TextView;
 import com.alfredobejarano.superfriends.R;
 import com.alfredobejarano.superfriends.SuperFriendsApplication;
 import com.alfredobejarano.superfriends.common.model.Friend;
+import com.alfredobejarano.superfriends.home.adapter.FavoriteFriendsAdapter;
 import com.alfredobejarano.superfriends.profile.view.ProfileActivity;
 
 /**
  * Defines a visual representation of a Friend.
  */
 public class FriendViewHolder extends RecyclerView.ViewHolder {
+    private FavoriteFriendsAdapter favAdapter;
     private TextView name = itemView.findViewById(R.id.item_friend_name);
     private ImageView photo = itemView.findViewById(R.id.item_friend_picture);
     private ImageView favorite = itemView.findViewById(R.id.item_friend_favorite);
 
-    public FriendViewHolder(View itemView) {
+    public FriendViewHolder(View itemView, FavoriteFriendsAdapter favAdapter) {
         super(itemView);
+        this.favAdapter = favAdapter;
     }
 
     /**
@@ -60,6 +63,7 @@ public class FriendViewHolder extends RecyclerView.ViewHolder {
                         // Change the star drawable depending on the new value.>
                         favorite.setImageResource(R.drawable.ic_star_full);
                     }
+                    favAdapter.setFavoriteFriend(friend);
                     // Updates the new friend info in a worker thread.
                     new Thread(new Runnable() {
                         @Override

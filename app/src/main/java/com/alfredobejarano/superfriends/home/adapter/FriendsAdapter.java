@@ -24,6 +24,11 @@ import java.util.List;
 public class FriendsAdapter extends RecyclerView.Adapter<FriendViewHolder> {
     private List<Friend> mFriends;
     private List<Friend> allFriends;
+    private FavoriteFriendsAdapter mFavAdapter;
+
+    public FriendsAdapter(FavoriteFriendsAdapter adapter) {
+        mFavAdapter = adapter;
+    }
 
     public void setFriends(List<Friend> friends) {
         // Assigns the new friends to the list value.
@@ -63,7 +68,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendViewHolder> {
     @NonNull
     @Override
     public FriendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new FriendViewHolder(LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false));
+        return new FriendViewHolder(LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false), mFavAdapter);
     }
 
     /**

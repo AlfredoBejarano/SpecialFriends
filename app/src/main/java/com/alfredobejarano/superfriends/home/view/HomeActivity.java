@@ -114,15 +114,6 @@ public class HomeActivity extends BaseActivity {
         friendsList = findViewById(R.id.home_friends);
         // Get the RecyclerView that will display the favorite friends.
         favoriteFriendsList = findViewById(R.id.home_favorite_friends);
-        // Set the adapter for the friends list.
-        friendsList.setAdapter(new FriendsAdapter());
-        // Changes the friends data set for the friends list.
-        homeViewModel.friends.observe(this, new Observer<List<Friend>>() {
-            @Override
-            public void onChanged(@Nullable List<Friend> friends) {
-                ((FriendsAdapter) friendsList.getAdapter()).setFriends(friends);
-            }
-        });
         // Set a LinearLayoutManager for the friends list.
         friendsList.setLayoutManager(new LinearLayoutManager(this));
         // Create another LinearLayoutManager instance.
@@ -138,6 +129,15 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onChanged(@Nullable List<Friend> friends) {
                 ((FavoriteFriendsAdapter) favoriteFriendsList.getAdapter()).setFriends(friends);
+            }
+        });
+        // Set the adapter for the friends list.
+        friendsList.setAdapter(new FriendsAdapter((FavoriteFriendsAdapter) favoriteFriendsList.getAdapter()));
+        // Changes the friends data set for the friends list.
+        homeViewModel.friends.observe(this, new Observer<List<Friend>>() {
+            @Override
+            public void onChanged(@Nullable List<Friend> friends) {
+                ((FriendsAdapter) friendsList.getAdapter()).setFriends(friends);
             }
         });
         homeViewModel.fetchFriends();

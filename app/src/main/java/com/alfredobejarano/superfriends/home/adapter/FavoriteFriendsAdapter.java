@@ -67,4 +67,31 @@ public class FavoriteFriendsAdapter extends RecyclerView.Adapter<FavoriteViewHol
     public int getItemCount() {
         return mFriends == null ? 0 : mFriends.size();
     }
+
+    /**
+     * Adds or removes a friend from the list.
+     * @param friend The friend to be added or removed.
+     */
+    public void setFavoriteFriend(Friend friend) {
+        // value for storing the index for the new / removed friend.
+        Integer index;
+        // If the user is going to be added.
+        if(friend.isFavorite()) {
+            // Add the friend to the list.
+            mFriends.add(friend);
+            // Sort the friends list by name.
+            SuperFriendsUtils.sortFriendsList(mFriends);
+            // The list was already sorted, so we need to get just the new index of the added friend.
+            index = mFriends.indexOf(friend);
+            // Notify the item that was inserted.
+            notifyItemInserted(index);
+        } else {
+            // Get the new index of the item to be removed.
+            index = mFriends.indexOf(friend);
+            // Remove the friend from the list.
+            mFriends.remove(friend);
+            // Notify the friend removal.
+            notifyItemRemoved(index);
+        }
+    }
 }

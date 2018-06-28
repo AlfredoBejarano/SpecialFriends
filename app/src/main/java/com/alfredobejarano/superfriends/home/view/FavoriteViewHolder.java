@@ -2,6 +2,7 @@ package com.alfredobejarano.superfriends.home.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,10 @@ public class FavoriteViewHolder extends RecyclerView.ViewHolder {
      * @param friend The friend to be rendered.
      */
     public void render(final Friend friend) {
+        itemView.startAnimation(AnimationUtils.loadAnimation(
+                itemView.getContext(),
+                android.R.anim.fade_in
+        ));
         name.setText(friend.getName());
         /*if (photo != null) {
             Picasso.with(itemView.getContext()).load(friend.getPicture()).into(photo, new CircularCallback(photo));
