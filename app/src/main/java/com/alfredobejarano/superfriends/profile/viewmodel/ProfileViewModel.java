@@ -1,9 +1,11 @@
 package com.alfredobejarano.superfriends.profile.viewmodel;
 
 import android.app.Application;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.alfredobejarano.superfriends.R;
 import com.alfredobejarano.superfriends.common.ViewModelState;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.common.viewmodel.BaseViewModel;
@@ -11,14 +13,17 @@ import com.alfredobejarano.superfriends.home.view.HomeActivity;
 import com.alfredobejarano.superfriends.profile.model.ProfileInformation;
 
 public class ProfileViewModel extends BaseViewModel {
-    private Friend friend;
+    public Friend friend;
     public ProfileInformation profileInformation;
+    public MutableLiveData<Integer> errorMessage = new MutableLiveData<>();
+    public MutableLiveData<Boolean> favoriteMenu = new MutableLiveData<>();
 
     /**
      * {@inheritDoc}
      */
     public ProfileViewModel(@NonNull Application application) {
         super(application);
+        favoriteMenu.setValue(false);
     }
 
     /**
@@ -33,12 +38,16 @@ public class ProfileViewModel extends BaseViewModel {
                 public void run() {
                     friend = friendDao.getFriendById(friendId);
                     if (friend != null) {
+                        favoriteMenu.postValue(friend.isFavorite());
                         profileInformation.name.postValue(friend.getName());
                         profileInformation.photo.postValue(friend.getPicture());
                         profileInformation.description.postValue(friend.getNote());
                         profileInformation.favorite.postValue(friend.isFavorite());
                         profileInformation.birthday.postValue(friend.getBirthday());
+                    } else {
+                        errorMessage.postValue(R.string.no_user_found);
                     }
+                    state.postValue(ViewModelState.STATE_READY);
                 }
             }).start();
         }
