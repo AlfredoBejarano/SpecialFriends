@@ -15,6 +15,8 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:id="@+id/home_toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
@@ -55,11 +57,12 @@
                     tools:text="Santiago Sada" />
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.Toolbar>
+        <requestFocus/>
 
         <EditText
             android:id="@+id/home_search_view"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="17dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="11dp"
@@ -71,6 +74,7 @@
             android:imeOptions="actionDone"
             android:inputType="textAutoComplete"
             android:padding="7dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_toolbar" />
@@ -98,6 +102,9 @@
             app:layout_constraintTop_toBottomOf="@id/home_favorite_friends"
             tools:listitem="@layout/item_friend" />
 
-        <include layout="@layout/view_loading" android:visibility="gone"/>
+        <include
+            android:id="@+id/loading_view"
+            layout="@layout/view_loading"
+            android:visibility="gone" />
     </android.support.constraint.ConstraintLayout>
 </layout>
