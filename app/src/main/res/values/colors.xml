@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#31b190</color>
-    <color name="colorPrimary">#31b190</color>
+    <color name="colorPrimary">#EF5350</color>
     <color name="colorLightGray">#d8d8d8</color>
-    <color name="colorPrimaryDark">#31b190</color>
     <color name="colorVeryDarkCyan">#1f2526 </color>
     <color name="colorBattleShipGray">#848C7E</color>
     <color name="colorLightGrayishBlue">#f0f3f7</color>

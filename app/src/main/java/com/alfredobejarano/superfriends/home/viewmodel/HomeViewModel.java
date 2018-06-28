@@ -96,6 +96,7 @@ public class HomeViewModel extends BaseViewModel {
                         // Retrieve the friends from the local database
                         friends.postValue(lFriends);
                     }
+                    state.postValue(ViewModelState.STATE_READY);
                 }
             }).start();
         }
