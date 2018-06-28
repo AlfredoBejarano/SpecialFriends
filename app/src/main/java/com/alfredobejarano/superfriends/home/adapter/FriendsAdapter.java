@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.alfredobejarano.superfriends.R;
+import com.alfredobejarano.superfriends.common.SuperFriendsUtils;
 import com.alfredobejarano.superfriends.common.model.Friend;
 import com.alfredobejarano.superfriends.home.view.FriendViewHolder;
 
@@ -32,7 +33,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendViewHolder> {
             // Add the friends title badges.
             addFriendsNameTitles();
             // Sort the friends names alphabetically.
-            sortFriendsList(mFriends);
+            SuperFriendsUtils.sortFriendsList(mFriends);
         }
         // Notify that the data has changed.
         notifyDataSetChanged();
@@ -79,22 +80,6 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendViewHolder> {
     @Override
     public int getItemCount() {
         return mFriends == null ? 0 : mFriends.size();
-    }
-
-    /**
-     * Sorts a list of friends alphabetically.
-     *
-     * @param friendsList The list of friends to be sorted.
-     */
-    private void sortFriendsList(List<Friend> friendsList) {
-        // Sort the list by a given comparator.
-        Collections.sort(friendsList, new Comparator<Friend>() {
-            @Override
-            public int compare(Friend friend1, Friend friend2) {
-                // Compare the name value.
-                return friend1.getName().compareToIgnoreCase(friend2.getName());
-            }
-        });
     }
 
     /**
